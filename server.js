@@ -107,6 +107,8 @@
 // const mongoose = require('mongoose');
 
 // mongoose.connect('mongodb://127.0.0.1:27017/idliDB')
+// mo
+
 //     .then(() => console.log('MongoDB connected'))
 //     .catch((error) => console.log('MongoDB error:', error));
 
@@ -114,8 +116,12 @@ const express=require('express')
 const app=express();
 
 const db=require('./db');
+require('dotenv').config();
+
+const PORT=process.env.PORT|| 3000;
 
 app.use(express.json());
+
 
 const menuitemsRouter=require('./routes/menuitemsRouter')
 
@@ -139,6 +145,6 @@ app.use('/menu',menuitemsRouter);
 
 app.use('/person',personRoutes);
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
   console.log('listening on post 3000');
 });
