@@ -3,7 +3,11 @@ const mongoose=require('mongoose')
 
 //const mongoURL = 'mongodb+srv://abhinavprakash0511_db_user:Abhinav7762@cluster0.1ej0mx1.mongodb.net/hotels';
 //const mongoURL='process.env.MONGODB_URL_LOCAL'
-const mongoURL='process.env.MONGODB_URL'
+require('dotenv').config();
+
+
+
+const mongoURL=process.env.MONGODB_URL;
 mongoose.connect(mongoURL);
 
 const db=mongoose.connection;

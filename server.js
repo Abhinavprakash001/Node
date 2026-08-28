@@ -118,6 +118,8 @@ const app=express();
 const db=require('./db');
 require('dotenv').config();
 
+
+
 const PORT=process.env.PORT|| 3000;
 
 app.use(express.json());
@@ -127,7 +129,8 @@ const menuitemsRouter=require('./routes/menuitemsRouter')
 
 const personRoutes=require('./routes/personRoutes');
 
-
+const bodyParser=require('body-parser');
+app.use(bodyParser.json());
 
 const menu= require('./menu');
 
