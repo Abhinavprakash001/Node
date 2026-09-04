@@ -132,7 +132,14 @@ const personRoutes=require('./routes/personRoutes');
 const bodyParser=require('body-parser');
 app.use(bodyParser.json());
 
+const logRequest=(req,res,next)=>{
+  console.log('[${new Date().toLocalString()}] Request made to:{req.originalUrl}');
+  next();
+}
+
 const menu= require('./menu');
+
+app.use(logRequest);
 
 app.get('/',function(req,res){
   res.send('welcome to my hotel')
