@@ -1,0 +1,13 @@
+
+    {
+    "name": "Rahul Kumar",
+    "party": "ABC Party",
+    "age": 35,
+    "votes": [
+        {
+            "user": "USER_ID",
+            "votedAt": "2026-09-06"
+        }
+    ],
+    "voteCount": 1
+}
