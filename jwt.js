@@ -13,20 +13,21 @@ const generateToken = (userData) => {
 const jwtAuthmiddleware = (req, res, next) => {
     try {
         const authorization = req.headers.authorization;
-
+        
+        console.log("Authorization header:", req.headers.authorization);
         if (!authorization) {
             return res.status(401).json({
                 error: "Token not found"
             });
         }
 
-        const token = authorization.split(" ")[1];
+       const [type, token] = authorization.split(" ");
 
-        if (!token) {
-            return res.status(401).json({
-                error: "Token not found"
-            });
-        }
+        if (type !== "Bearer" || !token) {
+         return res.status(401).json({
+         error: "Token not found"
+        });
+    }
 
         const decoded = jwt.verify(
             token,

@@ -1,28 +1,25 @@
-const mongoose=require('mongoose')
+
+const mongoose = require('mongoose');
 require('dotenv').config();
-//  const mongoURL = 'mongodb://127.0.0.1:27017/hotels';
 
-//const mongoURL = 'mongodb+srv://abhinavprakash0511_db_user:Abhinav7762@cluster0.1ej0mx1.mongodb.net/hotels';
+const mongoURL = process.env.MONGODB_URL;
 
-console.log("Mongo URL:", process.env.MONGODB_URL);
+if (!mongoURL) {
+    throw new Error('MONGODB_URL is missing from .env file');
+}
 
+mongoose.connect(mongoURL)
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch((err) => {
+        console.log('MongoDB connection error:', err);
+    });
 
-const mongoURL=process.env.MONGODB_URL;
+const db = mongoose.connection;
 
+db.on('disconnected', () => {
+    console.log('Disconnected from MongoDB');
+});
 
-
-
-// const mongoURL=process.env.MONGODB_URL;
-mongoose.connect(mongoURL);
-
-const db=mongoose.connection;
-db.on('connected',() =>{
-         console.log("connnected to mongose server")
-})
-db.on('error',(err)=>{
-       console.log('mongodb connection error',err);
-})
-db.on('disconnected',()=>{
-    console.log("connected to mongose server ")
-})
-module.exports=db;
+module.exports = db;
