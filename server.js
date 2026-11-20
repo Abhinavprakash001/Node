@@ -1,10 +1,16 @@
 
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 
 const db = require('./db');
+
+// Allow requests from any origin so the frontend (localhost or deployed) can connect.
+// In production you can restrict this to your actual frontend URL:
+// app.use(cors({ origin: 'https://your-frontend.onrender.com' }));
+app.use(cors());
 
 app.use(express.json());
 
